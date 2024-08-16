@@ -1,0 +1,99 @@
+describe('Books Collection API - Postive Tests', () => {
+    let token;
+
+    // 1: Test the login functionality
+    it('should authenticate and return a JWT token', () => {
+        cy.request('POST', '/login', {
+            username: 'testuser',
+            password: 'password'
+        }).then((response) => {
+            expect(response.status).to.eq(200);
+            expect(response.body).to.have.property('token');
+            token = response.body.token; 
+        });
+    });
+
+    // 2: Test getting all books
+    it('should GET all the books', () => {
+        cy.request({
+            method: 'GET',
+            url: '/books',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(200);
+            expect(response.body).to.be.an('array');
+            expect(response.body.length).to.be.gte(1); 
+        });
+    });
+
+    // 3: Test getting a single book by ID
+    it('should GET a book by the given id', () => {
+        const bookId = 1; 
+        cy.request({
+            method: 'GET',
+            url: `/books/${bookId}`,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(200);
+            expect(response.body).to.have.property('id', bookId);
+        });
+    });
+    
+    // 4: Test adding a new book
+    it('should POST a new book', () => {
+        cy.request({
+            method: 'POST',
+            url: '/books',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            body: {
+                title: 'New Book',
+                author: 'New Author',
+                year: 2024
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(201);
+            expect(response.body).to.have.property('title', 'New Book');
+        });
+    });
+
+    // 5: Test updating a book
+    it('should UPDATE a book by the given id', () => {
+        const bookId = 31; 
+        cy.request({
+            method: 'PUT',
+            url: `/books/${bookId}`,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            body: {
+                title: 'Updated Book',
+                author: 'Updated Author',
+                year: 2024
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(200);
+            expect(response.body).to.have.property('title', 'Updated Book');
+        });
+    });
+
+    // 6: Test deleting a book
+    it('should DELETE a book by the given id', () => {
+        const bookId = 31; 
+        cy.request({
+            method: 'DELETE',
+            url: `/books/${bookId}`,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(200);
+            expect(response.body).to.have.property('message', 'Book deleted successfully');
+        });
+    });
+});
