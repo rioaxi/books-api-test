@@ -1,0 +1,200 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-08-16T22:57:23.618Z",
+    "end": "2024-08-16T22:57:23.835Z",
+    "duration": 217,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "85f54afc-adfd-46c3-a9f4-cb9ee2eac7d2",
+      "title": "",
+      "fullFile": "cypress\\e2e\\books_api_corner_spec.cy.js",
+      "file": "cypress\\e2e\\books_api_corner_spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fe88f3db-c930-44ae-bb33-1ba3dbb4b370",
+          "title": "Books Collection API - Corner Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should return 400 when adding a book with an oversized title",
+              "fullTitle": "Books Collection API - Corner Tests should return 400 when adding a book with an oversized title",
+              "timedOut": null,
+              "duration": 89,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const oversizedTitle = 'A'.repeat(999); // Title exceeds typical length constraints\ncy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: {\n    title: oversizedTitle,\n    author: 'Some Author',\n    year: 2024\n  },\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('title', 'Title is required and should be a string with a maximum length of 255 characters.');\n});",
+              "err": {},
+              "uuid": "b7d9d5be-2a1d-4a10-8ec4-95dae5e437f4",
+              "parentUUID": "fe88f3db-c930-44ae-bb33-1ba3dbb4b370",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 400 when adding a book with an oversized author name",
+              "fullTitle": "Books Collection API - Corner Tests should return 400 when adding a book with an oversized author name",
+              "timedOut": null,
+              "duration": 13,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const oversizedAuthor = 'B'.repeat(999); // Author name exceeds typical length constraints\ncy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: {\n    title: 'Some Title',\n    author: oversizedAuthor,\n    year: 2024\n  },\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('author', 'Author is required and should be a string with a maximum length of 255 characters.');\n});",
+              "err": {},
+              "uuid": "477ccfe7-862f-4e6c-b9c3-5c55605ba60f",
+              "parentUUID": "fe88f3db-c930-44ae-bb33-1ba3dbb4b370",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 400 when adding a book with a negative year",
+              "fullTitle": "Books Collection API - Corner Tests should return 400 when adding a book with a negative year",
+              "timedOut": null,
+              "duration": 11,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: {\n    title: 'Some Title',\n    author: 'Some Author',\n    year: -2024\n  },\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('year', 'Year is required and should be a valid number between 0 and the current year.');\n});",
+              "err": {},
+              "uuid": "a8f84180-1566-47c7-b228-01a365baceb1",
+              "parentUUID": "fe88f3db-c930-44ae-bb33-1ba3dbb4b370",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 400 when adding a book with an extremely large year",
+              "fullTitle": "Books Collection API - Corner Tests should return 400 when adding a book with an extremely large year",
+              "timedOut": null,
+              "duration": 11,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: {\n    title: 'Some Title',\n    author: 'Some Author',\n    year: 999999\n  },\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('year', 'Year is required and should be a valid number between 0 and the current year.');\n});",
+              "err": {},
+              "uuid": "787975a4-2744-440f-b66f-c803d4bab150",
+              "parentUUID": "fe88f3db-c930-44ae-bb33-1ba3dbb4b370",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 400 when adding a book with an empty JSON object",
+              "fullTitle": "Books Collection API - Corner Tests should return 400 when adding a book with an empty JSON object",
+              "timedOut": null,
+              "duration": 14,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: {},\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body).to.have.property('errors');\n  expect(response.body.errors).to.have.property('title', 'Title is required and should be a string with a maximum length of 255 characters.');\n  expect(response.body.errors).to.have.property('author', 'Author is required and should be a string with a maximum length of 255 characters.');\n  expect(response.body.errors).to.have.property('year', 'Year is required and should be a valid number between 0 and the current year.');\n});",
+              "err": {},
+              "uuid": "4b9b92e4-87ef-4b4d-9994-3482d48c8686",
+              "parentUUID": "fe88f3db-c930-44ae-bb33-1ba3dbb4b370",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 400 when updating a book with invalid fields",
+              "fullTitle": "Books Collection API - Corner Tests should return 400 when updating a book with invalid fields",
+              "timedOut": null,
+              "duration": 11,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const bookId = 1; // Adjust according to your mock data\ncy.request({\n  method: 'PUT',\n  url: `/books/${bookId}`,\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: {\n    title: 'Some Title',\n    author: 'Some Author',\n    year: 'invalidYear'\n  },\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('year', 'Year should be a valid number between 0 and the current year.');\n});",
+              "err": {},
+              "uuid": "89ac988e-c16c-4cf4-919d-28e2c4a81461",
+              "parentUUID": "fe88f3db-c930-44ae-bb33-1ba3dbb4b370",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b7d9d5be-2a1d-4a10-8ec4-95dae5e437f4",
+            "477ccfe7-862f-4e6c-b9c3-5c55605ba60f",
+            "a8f84180-1566-47c7-b228-01a365baceb1",
+            "787975a4-2744-440f-b66f-c803d4bab150",
+            "4b9b92e4-87ef-4b4d-9994-3482d48c8686",
+            "89ac988e-c16c-4cf4-919d-28e2c4a81461"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 149,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "results/mocha",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

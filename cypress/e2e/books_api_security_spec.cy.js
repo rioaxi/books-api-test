@@ -34,7 +34,7 @@ describe('Books API - Security Tests', () => {
     });
 
     it('should not be vulnerable to SQL Injection when updating a book', () => {
-        const bookId = 1; 
+        const bookId = 31; 
         const sqlInjectionPayload = {
             title: "' OR '1'='1",
             author: "Test Author",
@@ -76,7 +76,7 @@ describe('Books API - Security Tests', () => {
     });
 
     it('should not be vulnerable to XSS when updating a book', () => {
-        const bookId = 1; 
+        const bookId = 31; 
         const xssPayload = {
             title: "<script>alert('XSS')</script>",
             author: "Test Author",

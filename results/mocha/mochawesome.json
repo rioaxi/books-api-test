@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-08-16T22:57:22.409Z",
+    "end": "2024-08-16T22:57:22.518Z",
+    "duration": 109,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "adf0ca2a-67be-423e-9f6d-d110e6668d90",
+      "title": "",
+      "fullFile": "cypress\\e2e\\books_api_auth_spec.cy.js",
+      "file": "cypress\\e2e\\books_api_auth_spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "342e951f-ab10-44b2-8a82-5ff015731dc1",
+          "title": "Books Collection API - Authentication Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should return 401 when accessing the API without a token",
+              "fullTitle": "Books Collection API - Authentication Tests should return 401 when accessing the API without a token",
+              "timedOut": null,
+              "duration": 44,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: '/books',\n  body: sampleBook,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(401);\n  expect(response.body).to.have.property('error', 'Unauthorized: No token provided');\n});",
+              "err": {},
+              "uuid": "b247ebc4-8c23-4f07-af7c-7c4ea7b35f06",
+              "parentUUID": "342e951f-ab10-44b2-8a82-5ff015731dc1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 403 when accessing the API with an expired token",
+              "fullTitle": "Books Collection API - Authentication Tests should return 403 when accessing the API with an expired token",
+              "timedOut": null,
+              "duration": 13,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const expiredToken = 'expiredToken12345';\ncy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${expiredToken}`\n  },\n  body: sampleBook,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(403);\n  expect(response.body).to.have.property('error', 'Forbidden: Invalid token');\n});",
+              "err": {},
+              "uuid": "5843eccf-327f-4db0-a372-153079ea53cc",
+              "parentUUID": "342e951f-ab10-44b2-8a82-5ff015731dc1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 403 when accessing the API with a malformed token",
+              "fullTitle": "Books Collection API - Authentication Tests should return 403 when accessing the API with a malformed token",
+              "timedOut": null,
+              "duration": 12,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const malformedToken = 'malformedToken12345';\ncy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${malformedToken}`\n  },\n  body: sampleBook,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(403);\n  expect(response.body).to.have.property('error', 'Forbidden: Invalid token');\n});",
+              "err": {},
+              "uuid": "1db3fb2e-96a0-4d0d-a957-34a322e233e9",
+              "parentUUID": "342e951f-ab10-44b2-8a82-5ff015731dc1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b247ebc4-8c23-4f07-af7c-7c4ea7b35f06",
+            "5843eccf-327f-4db0-a372-153079ea53cc",
+            "1db3fb2e-96a0-4d0d-a957-34a322e233e9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 69,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "results/mocha",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

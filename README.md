@@ -20,6 +20,9 @@ cypress/
 │   └──  books_api_security_spec.cy.js
 ```
 
+## Report 
+Reports are in the folder ['result'](https://github.com/rioaxi/mock-api-books/tree/main/results)
+
 ## Test Cases
 
 ### Positive Cases Testing 

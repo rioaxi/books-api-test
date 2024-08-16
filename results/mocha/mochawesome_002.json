@@ -1,0 +1,200 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-08-16T22:57:25.608Z",
+    "end": "2024-08-16T22:57:25.816Z",
+    "duration": 208,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "dbf9cd9e-5ec4-4f68-8d5c-a2efa7d8cf07",
+      "title": "",
+      "fullFile": "cypress\\e2e\\books_api_negative_spec.cy.js",
+      "file": "cypress\\e2e\\books_api_negative_spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1d5268a2-02e2-4aed-b4b3-92ece262bcf6",
+          "title": "Books Collection API - Negative Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should authenticate and return a JWT token",
+              "fullTitle": "Books Collection API - Negative Tests should authenticate and return a JWT token",
+              "timedOut": null,
+              "duration": 76,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request('POST', '/login', {\n  username: 'testuser',\n  password: 'password'\n}).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.have.property('token');\n  token = response.body.token;\n});",
+              "err": {},
+              "uuid": "f1875a12-0684-4dbe-a7a4-4651c5b5d111",
+              "parentUUID": "1d5268a2-02e2-4aed-b4b3-92ece262bcf6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 404 when getting a non-existent book",
+              "fullTitle": "Books Collection API - Negative Tests should return 404 when getting a non-existent book",
+              "timedOut": null,
+              "duration": 15,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nonExistentBookId = 9999;\ncy.request({\n  method: 'GET',\n  url: `/books/${nonExistentBookId}`,\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(404);\n  expect(response.body).to.have.property('error', 'Book not found');\n});",
+              "err": {},
+              "uuid": "92c95fe9-5bdf-4afc-a52c-ec952d0353cb",
+              "parentUUID": "1d5268a2-02e2-4aed-b4b3-92ece262bcf6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 404 when deleting a non-existent book",
+              "fullTitle": "Books Collection API - Negative Tests should return 404 when deleting a non-existent book",
+              "timedOut": null,
+              "duration": 12,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nonExistentBookId = 9999;\ncy.request({\n  method: 'DELETE',\n  url: `/books/${nonExistentBookId}`,\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(404);\n  expect(response.body).to.have.property('error', 'Book not found');\n});",
+              "err": {},
+              "uuid": "dccf750b-9e75-44a5-a015-eafea00a86a0",
+              "parentUUID": "1d5268a2-02e2-4aed-b4b3-92ece262bcf6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 400 when adding a book with missing fields",
+              "fullTitle": "Books Collection API - Negative Tests should return 400 when adding a book with missing fields",
+              "timedOut": null,
+              "duration": 12,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: {\n    // Missing 'title' and 'author'\n    year: 2024\n  },\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('title', 'Title is required and should be a string with a maximum length of 255 characters.');\n  expect(response.body.errors).to.have.property('author', 'Author is required and should be a string with a maximum length of 255 characters.');\n});",
+              "err": {},
+              "uuid": "89f6932b-07f8-44b5-8f2b-b70aa1c26dfc",
+              "parentUUID": "1d5268a2-02e2-4aed-b4b3-92ece262bcf6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 400 when adding a book with invalid data",
+              "fullTitle": "Books Collection API - Negative Tests should return 400 when adding a book with invalid data",
+              "timedOut": null,
+              "duration": 13,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: {\n    title: '1984',\n    author: '',\n    year: 'invalid year'\n  },\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('author', 'Author is required and should be a string with a maximum length of 255 characters.');\n  expect(response.body.errors).to.have.property('year', 'Year is required and should be a valid number between 0 and the current year.');\n});",
+              "err": {},
+              "uuid": "593a37e3-b4ab-42a5-894f-c92eeb5c6a6f",
+              "parentUUID": "1d5268a2-02e2-4aed-b4b3-92ece262bcf6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return 400 when updating a book with invalid data",
+              "fullTitle": "Books Collection API - Negative Tests should return 400 when updating a book with invalid data",
+              "timedOut": null,
+              "duration": 10,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const bookId = 1;\ncy.request({\n  method: 'PUT',\n  url: `/books/${bookId}`,\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: {\n    title: '',\n    author: 'New Author',\n    year: 2025\n  },\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('year', 'Year should be a valid number between 0 and the current year.');\n});",
+              "err": {},
+              "uuid": "a2903d25-defc-44ca-9f30-9c4fe3e98487",
+              "parentUUID": "1d5268a2-02e2-4aed-b4b3-92ece262bcf6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f1875a12-0684-4dbe-a7a4-4651c5b5d111",
+            "92c95fe9-5bdf-4afc-a52c-ec952d0353cb",
+            "dccf750b-9e75-44a5-a015-eafea00a86a0",
+            "89f6932b-07f8-44b5-8f2b-b70aa1c26dfc",
+            "593a37e3-b4ab-42a5-894f-c92eeb5c6a6f",
+            "a2903d25-defc-44ca-9f30-9c4fe3e98487"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 138,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "results/mocha",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
