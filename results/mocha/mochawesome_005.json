@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 4,
-    "start": "2024-08-16T22:57:31.658Z",
-    "end": "2024-08-16T22:57:32.549Z",
-    "duration": 891,
+    "start": "2024-08-16T23:49:28.912Z",
+    "end": "2024-08-16T23:49:29.755Z",
+    "duration": 843,
     "testsRegistered": 4,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "065df249-2088-45ce-b3f4-9da01e1d97d9",
+      "uuid": "73e8a60d-a9ac-4f9f-8edf-3f34d43be175",
       "title": "",
       "fullFile": "cypress\\e2e\\books_api_security_spec.cy.js",
       "file": "cypress\\e2e\\books_api_security_spec.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "760f91a9-2f85-43dc-874f-a76f51bf861d",
+          "uuid": "e533b7d0-812b-47e4-a6dc-91e01a98c18e",
           "title": "Books API - Security Tests",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should not be vulnerable to SQL Injection when adding a book",
               "fullTitle": "Books API - Security Tests should not be vulnerable to SQL Injection when adding a book",
               "timedOut": null,
-              "duration": 267,
+              "duration": 219,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -51,8 +51,8 @@
                 "estack": "AssertionError: expected 201 to equal 400\n    at Context.eval (webpack:///./cypress/e2e/books_api_security_spec.cy.js:31:39)",
                 "diff": "- 201\n+ 400\n"
               },
-              "uuid": "f79833cb-2935-4532-9a1a-37c3e20ca6f3",
-              "parentUUID": "760f91a9-2f85-43dc-874f-a76f51bf861d",
+              "uuid": "1e02f226-67c3-46a7-87aa-06e1658a009d",
+              "parentUUID": "e533b7d0-812b-47e4-a6dc-91e01a98c18e",
               "isHook": false,
               "skipped": false
             },
@@ -60,21 +60,21 @@
               "title": "should not be vulnerable to SQL Injection when updating a book",
               "fullTitle": "Books API - Security Tests should not be vulnerable to SQL Injection when updating a book",
               "timedOut": null,
-              "duration": 211,
+              "duration": 174,
               "state": "failed",
               "speed": null,
               "pass": false,
               "fail": true,
               "pending": false,
               "context": null,
-              "code": "const bookId = 1;\nconst sqlInjectionPayload = {\n  title: \"' OR '1'='1\",\n  author: \"Test Author\",\n  year: 2024\n};\ncy.request({\n  method: 'PUT',\n  url: `/books/${bookId}`,\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: sqlInjectionPayload,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('title').and.to.match(/invalid/);\n});",
+              "code": "const bookId = 31;\nconst sqlInjectionPayload = {\n  title: \"' OR '1'='1\",\n  author: \"Test Author\",\n  year: 2024\n};\ncy.request({\n  method: 'PUT',\n  url: `/books/${bookId}`,\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: sqlInjectionPayload,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('title').and.to.match(/invalid/);\n});",
               "err": {
-                "message": "AssertionError: expected 200 to equal 400",
-                "estack": "AssertionError: expected 200 to equal 400\n    at Context.eval (webpack:///./cypress/e2e/books_api_security_spec.cy.js:53:39)",
-                "diff": "- 200\n+ 400\n"
+                "message": "AssertionError: expected 404 to equal 400",
+                "estack": "AssertionError: expected 404 to equal 400\n    at Context.eval (webpack:///./cypress/e2e/books_api_security_spec.cy.js:53:39)",
+                "diff": "- 404\n+ 400\n"
               },
-              "uuid": "b4f3c8cc-157b-4eb4-a0bd-868238b97b94",
-              "parentUUID": "760f91a9-2f85-43dc-874f-a76f51bf861d",
+              "uuid": "b620e744-c2a4-48f1-a3e1-02b7d96a6325",
+              "parentUUID": "e533b7d0-812b-47e4-a6dc-91e01a98c18e",
               "isHook": false,
               "skipped": false
             },
@@ -82,7 +82,7 @@
               "title": "should not be vulnerable to XSS when adding a book",
               "fullTitle": "Books API - Security Tests should not be vulnerable to XSS when adding a book",
               "timedOut": null,
-              "duration": 154,
+              "duration": 175,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -95,8 +95,8 @@
                 "estack": "AssertionError: expected 201 to equal 400\n    at Context.eval (webpack:///./cypress/e2e/books_api_security_spec.cy.js:73:39)",
                 "diff": "- 201\n+ 400\n"
               },
-              "uuid": "3f81fb40-4e7f-4ebd-82d1-030c09a48901",
-              "parentUUID": "760f91a9-2f85-43dc-874f-a76f51bf861d",
+              "uuid": "54b65c91-8b75-4dfa-a804-f7c526854b5b",
+              "parentUUID": "e533b7d0-812b-47e4-a6dc-91e01a98c18e",
               "isHook": false,
               "skipped": false
             },
@@ -104,21 +104,21 @@
               "title": "should not be vulnerable to XSS when updating a book",
               "fullTitle": "Books API - Security Tests should not be vulnerable to XSS when updating a book",
               "timedOut": null,
-              "duration": 143,
+              "duration": 165,
               "state": "failed",
               "speed": null,
               "pass": false,
               "fail": true,
               "pending": false,
               "context": null,
-              "code": "const bookId = 1;\nconst xssPayload = {\n  title: \"<script>alert('XSS')</script>\",\n  author: \"Test Author\",\n  year: 2024\n};\ncy.request({\n  method: 'PUT',\n  url: `/books/${bookId}`,\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: xssPayload,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('title').and.to.match(/invalid/);\n});",
+              "code": "const bookId = 31;\nconst xssPayload = {\n  title: \"<script>alert('XSS')</script>\",\n  author: \"Test Author\",\n  year: 2024\n};\ncy.request({\n  method: 'PUT',\n  url: `/books/${bookId}`,\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: xssPayload,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.errors).to.have.property('title').and.to.match(/invalid/);\n});",
               "err": {
-                "message": "AssertionError: expected 200 to equal 400",
-                "estack": "AssertionError: expected 200 to equal 400\n    at Context.eval (webpack:///./cypress/e2e/books_api_security_spec.cy.js:95:39)",
-                "diff": "- 200\n+ 400\n"
+                "message": "AssertionError: expected 404 to equal 400",
+                "estack": "AssertionError: expected 404 to equal 400\n    at Context.eval (webpack:///./cypress/e2e/books_api_security_spec.cy.js:95:39)",
+                "diff": "- 404\n+ 400\n"
               },
-              "uuid": "a5bb5786-e9e0-486c-a611-1027fad1746f",
-              "parentUUID": "760f91a9-2f85-43dc-874f-a76f51bf861d",
+              "uuid": "4fa721e6-6ac7-4c52-9222-d43ea778c9f4",
+              "parentUUID": "e533b7d0-812b-47e4-a6dc-91e01a98c18e",
               "isHook": false,
               "skipped": false
             }
@@ -126,14 +126,14 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "f79833cb-2935-4532-9a1a-37c3e20ca6f3",
-            "b4f3c8cc-157b-4eb4-a0bd-868238b97b94",
-            "3f81fb40-4e7f-4ebd-82d1-030c09a48901",
-            "a5bb5786-e9e0-486c-a611-1027fad1746f"
+            "1e02f226-67c3-46a7-87aa-06e1658a009d",
+            "b620e744-c2a4-48f1-a3e1-02b7d96a6325",
+            "54b65c91-8b75-4dfa-a804-f7c526854b5b",
+            "4fa721e6-6ac7-4c52-9222-d43ea778c9f4"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 775,
+          "duration": 733,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

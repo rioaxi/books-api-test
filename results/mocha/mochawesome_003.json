@@ -5,8 +5,8 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2024-08-16T22:57:27.609Z",
-    "end": "2024-08-16T22:57:27.738Z",
+    "start": "2024-08-16T23:49:24.828Z",
+    "end": "2024-08-16T23:49:24.957Z",
     "duration": 129,
     "testsRegistered": 2,
     "passPercent": 100,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "000c2366-b2b5-4566-9de8-26ffe7fa7628",
+      "uuid": "7a8d3657-825b-4b4f-b3ad-f150ddb99f12",
       "title": "",
       "fullFile": "cypress\\e2e\\books_api_perf_spec.cy.js",
       "file": "cypress\\e2e\\books_api_perf_spec.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "882cb844-51d6-46e4-b305-1df3ea5e757e",
+          "uuid": "6a32f477-5e29-42f2-8517-fae5c2d31fe7",
           "title": "Books Collection API - Performance Tests",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should respond within 200ms when adding a book",
               "fullTitle": "Books Collection API - Performance Tests should respond within 200ms when adding a book",
               "timedOut": null,
-              "duration": 85,
+              "duration": 86,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "const sampleBook = {\n  title: 'Performance Testing Book',\n  author: 'Test Author',\n  year: 2024\n};\nconst startTime = performance.now();\ncy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  body: sampleBook,\n  failOnStatusCode: false\n}).then(response => {\n  const endTime = performance.now();\n  const duration = endTime - startTime;\n  expect(response.status).to.eq(201);\n  expect(duration).to.be.lessThan(200);\n});",
               "err": {},
-              "uuid": "586166b2-874d-4602-bb36-b5ff1c395721",
-              "parentUUID": "882cb844-51d6-46e4-b305-1df3ea5e757e",
+              "uuid": "df8e5684-df0a-4aa0-850c-9d55a0ac047c",
+              "parentUUID": "6a32f477-5e29-42f2-8517-fae5c2d31fe7",
               "isHook": false,
               "skipped": false
             },
@@ -65,21 +65,21 @@
               "context": null,
               "code": "const bookId = 1;\nconst startTime = performance.now();\ncy.request({\n  method: 'GET',\n  url: `/books/${bookId}`,\n  headers: {\n    'Authorization': `Bearer ${token}`\n  },\n  failOnStatusCode: false\n}).then(response => {\n  const endTime = performance.now();\n  const duration = endTime - startTime;\n  expect(response.status).to.eq(200);\n  expect(duration).to.be.lessThan(200);\n});",
               "err": {},
-              "uuid": "d1df6b9a-2e71-4895-ac67-5bac2f7c3f0d",
-              "parentUUID": "882cb844-51d6-46e4-b305-1df3ea5e757e",
+              "uuid": "68a19c01-0914-4200-bcbf-ac3ed51cbc2d",
+              "parentUUID": "6a32f477-5e29-42f2-8517-fae5c2d31fe7",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "586166b2-874d-4602-bb36-b5ff1c395721",
-            "d1df6b9a-2e71-4895-ac67-5bac2f7c3f0d"
+            "df8e5684-df0a-4aa0-850c-9d55a0ac047c",
+            "68a19c01-0914-4200-bcbf-ac3ed51cbc2d"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 98,
+          "duration": 99,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

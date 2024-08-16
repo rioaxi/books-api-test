@@ -51,5 +51,4 @@ describe('Books Collection API - Authentication Tests', () => {
             expect(response.body).to.have.property('error', 'Forbidden: Invalid token');
         });
     });
-
 });

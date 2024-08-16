@@ -13,18 +13,20 @@ describe('Books Collection API - Postive Tests', () => {
         });
     });
 
-    // 2: Test getting all books
-    it('should GET all the books', () => {
+    // 2: Test getting all books and the data format
+    it('Should successfully get all books with valid token and JSON response format', () => {
         cy.request({
             method: 'GET',
             url: '/books',
             headers: {
-                'Authorization': `Bearer ${token}`
-            }
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/json'
+            },
         }).then((response) => {
             expect(response.status).to.eq(200);
+            expect(response.headers['content-type']).to.include('application/json');
             expect(response.body).to.be.an('array');
-            expect(response.body.length).to.be.gte(1); 
+            expect(response.body.length).to.be.greaterThan(0);
         });
     });
 
@@ -96,4 +98,5 @@ describe('Books Collection API - Postive Tests', () => {
             expect(response.body).to.have.property('message', 'Book deleted successfully');
         });
     });
+
 });

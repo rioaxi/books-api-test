@@ -5,9 +5,9 @@
     "passes": 3,
     "pending": 0,
     "failures": 0,
-    "start": "2024-08-16T22:57:22.409Z",
-    "end": "2024-08-16T22:57:22.518Z",
-    "duration": 109,
+    "start": "2024-08-16T23:49:19.588Z",
+    "end": "2024-08-16T23:49:19.704Z",
+    "duration": 116,
     "testsRegistered": 3,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "adf0ca2a-67be-423e-9f6d-d110e6668d90",
+      "uuid": "36c619d8-95d7-4177-a2b1-fb5942e7201c",
       "title": "",
       "fullFile": "cypress\\e2e\\books_api_auth_spec.cy.js",
       "file": "cypress\\e2e\\books_api_auth_spec.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "342e951f-ab10-44b2-8a82-5ff015731dc1",
+          "uuid": "0be76d89-6186-47d2-a627-8970019364e0",
           "title": "Books Collection API - Authentication Tests",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should return 401 when accessing the API without a token",
               "fullTitle": "Books Collection API - Authentication Tests should return 401 when accessing the API without a token",
               "timedOut": null,
-              "duration": 44,
+              "duration": 46,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.request({\n  method: 'POST',\n  url: '/books',\n  body: sampleBook,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(401);\n  expect(response.body).to.have.property('error', 'Unauthorized: No token provided');\n});",
               "err": {},
-              "uuid": "b247ebc4-8c23-4f07-af7c-7c4ea7b35f06",
-              "parentUUID": "342e951f-ab10-44b2-8a82-5ff015731dc1",
+              "uuid": "77bc1464-ab45-4e48-825c-95e7e1a92dba",
+              "parentUUID": "0be76d89-6186-47d2-a627-8970019364e0",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "should return 403 when accessing the API with an expired token",
               "fullTitle": "Books Collection API - Authentication Tests should return 403 when accessing the API with an expired token",
               "timedOut": null,
-              "duration": 13,
+              "duration": 16,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "const expiredToken = 'expiredToken12345';\ncy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${expiredToken}`\n  },\n  body: sampleBook,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(403);\n  expect(response.body).to.have.property('error', 'Forbidden: Invalid token');\n});",
               "err": {},
-              "uuid": "5843eccf-327f-4db0-a372-153079ea53cc",
-              "parentUUID": "342e951f-ab10-44b2-8a82-5ff015731dc1",
+              "uuid": "ac42e690-7d1c-47a7-8a09-1101a5f21ac3",
+              "parentUUID": "0be76d89-6186-47d2-a627-8970019364e0",
               "isHook": false,
               "skipped": false
             },
@@ -74,7 +74,7 @@
               "title": "should return 403 when accessing the API with a malformed token",
               "fullTitle": "Books Collection API - Authentication Tests should return 403 when accessing the API with a malformed token",
               "timedOut": null,
-              "duration": 12,
+              "duration": 14,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -83,22 +83,22 @@
               "context": null,
               "code": "const malformedToken = 'malformedToken12345';\ncy.request({\n  method: 'POST',\n  url: '/books',\n  headers: {\n    'Authorization': `Bearer ${malformedToken}`\n  },\n  body: sampleBook,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(403);\n  expect(response.body).to.have.property('error', 'Forbidden: Invalid token');\n});",
               "err": {},
-              "uuid": "1db3fb2e-96a0-4d0d-a957-34a322e233e9",
-              "parentUUID": "342e951f-ab10-44b2-8a82-5ff015731dc1",
+              "uuid": "5f4b23f5-2006-49a4-aa89-c04494e527cf",
+              "parentUUID": "0be76d89-6186-47d2-a627-8970019364e0",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "b247ebc4-8c23-4f07-af7c-7c4ea7b35f06",
-            "5843eccf-327f-4db0-a372-153079ea53cc",
-            "1db3fb2e-96a0-4d0d-a957-34a322e233e9"
+            "77bc1464-ab45-4e48-825c-95e7e1a92dba",
+            "ac42e690-7d1c-47a7-8a09-1101a5f21ac3",
+            "5f4b23f5-2006-49a4-aa89-c04494e527cf"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 69,
+          "duration": 76,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

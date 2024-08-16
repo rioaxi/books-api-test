@@ -106,4 +106,20 @@ describe('Books Collection API - Negative Tests', () => {
             expect(response.body.errors).to.have.property('year', 'Year should be a valid number between 0 and the current year.');
         });
     });
+
+    // 6: Test timeout handler
+    it('Should handle server timeout gracefully', () => {
+        cy.request({
+            method: 'GET',
+            url: '/books/delayed', // Use the delayed route
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            timeout: 6000, // Setting a 6s timeout
+            failOnStatusCode: false, 
+        }).then((response) => {
+            expect(response.status).to.eq(503);
+            expect(response.body).to.have.property('error', 'Request timed out');
+        });
+    });
 });
