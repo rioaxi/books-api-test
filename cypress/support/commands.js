@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', () => {
+    cy.request('POST', '/login', {
+        username: 'testuser',
+        password: 'password',
+    }).then((response) => {
+        expect(response.status).to.eq(200);
+        expect(response.body).to.have.property('token');
+        // Save token for reuse
+        window.localStorage.setItem('jwtToken', response.body.token);
+    });
+});

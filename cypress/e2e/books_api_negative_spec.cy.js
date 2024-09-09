@@ -2,14 +2,11 @@ describe('Books Collection API - Negative Tests', () => {
     let token;
 
     // Login
-    it('should authenticate and return a JWT token', () => {
-        cy.request('POST', '/login', {
-            username: 'testuser',
-            password: 'password'
-        }).then((response) => {
-            expect(response.status).to.eq(200);
-            expect(response.body).to.have.property('token');
-            token = response.body.token; 
+    before(() => {
+        // Use the login function to authenticate and get the token
+        cy.login().then(() => {
+            // Retrieve the token from localStorage
+            token = window.localStorage.getItem('jwtToken');
         });
     });
 
